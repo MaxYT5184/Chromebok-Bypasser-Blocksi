@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ChromeBook 45 GB Adder</title>
+  <title>ChromeBook 1 GB Filler</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 40px;
-      background-color: #f0f0f0;
+      background-color: #f7f7f7;
     }
 
     h1 {
@@ -15,7 +15,7 @@
     }
 
     button {
-      background-color: #4CAF50;
+      background-color: #007bff;
       color: white;
       border: none;
       padding: 15px 30px;
@@ -25,37 +25,39 @@
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #0056b3;
     }
 
     #status {
       margin-top: 20px;
       font-weight: bold;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <h1>ChromeBook 45 GB Adder (Safe Version)</h1>
+  <h1>ChromeBook 1 GB Adder</h1>
   <button onclick="generateFiles()">Start Download</button>
   <div id="status"></div>
 
   <script>
     function generateFiles() {
       const numberOfFiles = 5;
-      const fileSizeMB = 900; // 900 MB per file
+      const fileSizeMB = 200; // Each file will be ~200MB
       const content = "This is filler content for testing.\n";
       const repeatCount = Math.floor((1024 * 1024 * fileSizeMB) / content.length);
       const status = document.getElementById("status");
 
-      status.textContent = "Generating files, please wait...";
-
       let fileIndex = 1;
+      status.textContent = "Starting download...";
 
       function createNextFile() {
         if (fileIndex > numberOfFiles) {
-          status.textContent = "All files generated and downloads started.";
+          status.textContent = "All 5 files (~1GB total) downloaded.";
           return;
         }
+
+        status.textContent = `Creating file ${fileIndex} of ${numberOfFiles}...`;
 
         setTimeout(() => {
           const repeated = content.repeat(repeatCount);
@@ -66,7 +68,7 @@
           link.click();
           fileIndex++;
           createNextFile();
-        }, 1000); // Wait between files to avoid memory issues
+        }, 1000); // 1 second pause between files
       }
 
       createNextFile();
