@@ -43,7 +43,7 @@
   <script>
     function generateFiles() {
       const numberOfFiles = 10;
-      const fileSizeMB = 800; // Each file will be ~800MB
+      const fileSizeMB = 500; // Each file will be ~800MB
       const content = "This is filler content for testing.\n";
       const repeatCount = Math.floor((1024 * 1024 * fileSizeMB) / content.length);
       const status = document.getElementById("status");
@@ -68,7 +68,7 @@
           link.click();
           fileIndex++;
           createNextFile();
-        }, 1); // 1 second pause between files
+        }, 1000); // 1 second pause between files
       }
 
       createNextFile();
