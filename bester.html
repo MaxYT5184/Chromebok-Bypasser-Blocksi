@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChromeBook 45 GB Adder</title>
+</head>
+<body>
+  <h1>ChromeBook 45 GB Adder (Simulated)</h1>
+  <button onclick="generateFiles()">Start Download</button>
+
+  <script>
+    function generateFiles() {
+      const numberOfFiles = 5;
+      const fileSizeMB = 9000; // 9 GB = 9000 MB per file (in real scenario)
+      const content = "This is filler content for testing.\n";
+      const repeatCount = Math.floor((1024 * 1024 * fileSizeMB) / content.length);
+
+      try {
+        for (let i = 1; i <= numberOfFiles; i++) {
+          const repeated = content.repeat(repeatCount); // Can crash browser if too big
+          const blob = new Blob([repeated], { type: "text/plain" });
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = `file_${i}.txt`;
+          link.click();
+        }
+      } catch (e) {
+        alert("File generation failed: likely too large for browser memory. Try smaller sizes.");
+        console.error(e);
+      }
+    }
+  </script>
+</body>
+</html>
